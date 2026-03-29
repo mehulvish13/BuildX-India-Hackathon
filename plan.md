@@ -1,70 +1,58 @@
-## Plan: AlphaSense AI Winning Build
+## Plan: Autonomous Meeting Workflow MVP
 
-Build AlphaSense AI as a multi-agent investor copilot for Problem 6 that delivers WHY + RISK + ACTION, demonstrates self-correction, and proves measurable portfolio impact with explicit assumptions.
+Build a Problem 2 submission where multi-agents convert meeting inputs into tracked execution with autonomous follow-up, stall detection, and escalation, while maintaining a full audit trail. Use Python backend with a minimal web UI and deterministic replay mode (no external APIs) to maximize demo reliability.
 
 **Steps**
-1. Phase 0 - Positioning lock (2 hours): Freeze product claim as "signal-finder and action assistant, not market summarizer".
-2. Phase 0 - MVP boundary lock (depends on 1): Keep one complete pipeline only: detect signal -> validate pattern -> reason -> risk check -> portfolio-aware action -> audit log.
-3. Phase 1 - Agent contract design (Day 1): Define five core agents and one memory loop.
+1. Phase 0 - Product lock (2 hours): Freeze thesis: "From raw meeting notes to completed tasks with autonomous follow-up and SLA escalation."
+2. Phase 0 - Scope lock (depends on 1): Limit to one workflow only: ingest meeting transcript -> extract decisions/tasks -> assign owners -> follow-up loop -> escalate stalled tasks -> status dashboard.
+3. Phase 1 - Agent design (Day 1): Define 5 agents.
 4. Phase 1 - Agent roles:
-- Signal Agent: ingest filings, insider activity, and earnings events.
-- Pattern Agent: detect breakout/reversal/support-resistance style technical setups.
-- Reasoning Agent: generate evidence-based WHY narrative with source pointers.
-- Risk Agent: assign downside level (low/medium/high), identify key failure conditions.
-- Portfolio Agent: map recommendation to user profile (watch, buy small, avoid).
-- Memory Loop: store outcome feedback and tune scoring thresholds for future runs.
-5. Phase 1 - Data schemas (depends on 3): Finalize OpportunityCard fields: symbol, confidence, WHY points, RISK points, ACTION, position sizing hint, timestamp, evidence references.
-6. Phase 2 - Vertical slice implementation (Days 2-3, depends on 5): Build deterministic replay for 3 scenarios where agents produce complete OpportunityCard output.
-7. Phase 2 - Self-correction demo path (depends on 6): Force one critic-style failure by injecting weak evidence; rerun loop so Reasoning or Risk output is corrected before final recommendation.
-8. Phase 3 - Human-in-the-loop gate (Day 4): Add explicit approval checkpoint before any action changes portfolio suggestion state from draft to approved.
-9. Phase 3 - Impact model build (parallel with 8): Add KPI calculations and baseline comparison from replay runs.
-10. Phase 4 - Pitch packaging (Day 5): Assemble 3-minute script and architecture document centered on autonomy, recovery, and business value.
-11. Phase 4 - Final hardening (Day 6): Rehearse full demo three times with stable dataset and lock final submission assets.
+- Intake Agent: parses transcript/notes into normalized meeting artifacts.
+- Decision Agent: extracts decisions, tasks, owners, due dates, dependencies.
+- Orchestrator Agent: creates execution plan and schedules follow-up checks.
+- Recovery Agent: detects stalls/failures and performs retry/reroute/escalation.
+- Audit Agent: logs every decision, confidence, and action with timestamps.
+5. Phase 1 - Data contracts (depends on 3): Finalize schemas for MeetingInput, TaskItem, WorkflowState, Alert, EscalationEvent, AuditEntry.
+6. Phase 2 - Vertical slice build (Days 2-3, depends on 5): Implement deterministic replay scenarios for 3 cases:
+- Happy path completion
+- Owner misses deadline, recovered via reminder
+- Repeated delay, escalated to manager
+7. Phase 2 - Autonomy depth (depends on 6): Ensure at least 4 consecutive steps execute without manual intervention.
+8. Phase 3 - Failure recovery hardening (Day 4): Add policy for retry windows, escalation thresholds, and fallback owner routing.
+9. Phase 3 - Human control gate (parallel with 8): Add explicit approval for high-impact actions (final escalation or reassignment).
+10. Phase 4 - Impact model (Day 5): Quantify:
+- Follow-up automation rate
+- Delay reduction percentage
+- Coordination time saved per week
+11. Phase 4 - Packaging and rehearsal (Day 6): Finalize README narrative, architecture document, and 3-minute demo runbook aligned to judges.
 
-**Winning demo flow (3 minutes)**
-1. Problem pain: investor overload and missed opportunities.
-2. Live run: Opportunity detected for one stock with WHY evidence chain.
-3. Risk reveal: downside conditions and risk level.
-4. Personalized action: watch or buy small or avoid based on portfolio profile.
-5. Failure-recovery: show weak recommendation rejected and corrected.
-6. Impact math: show annual loss-avoidance or opportunity-capture uplift.
+**Winning differentiators**
+1. Explicit self-correction loop: missed SLA triggers automatic retry and escalation path.
+2. Full auditability: every agent action is explainable and timestamped.
+3. Real autonomy: workflow continues without human prompts until a policy gate is hit.
 
-**Impact model**
-1. Missed-opportunity avoidance: monthly missed opportunities x average expected return x portfolio size x 12.
-2. Analyst time saved: manual signal triage minutes minus agent triage minutes, multiplied by opportunities per month.
-3. Decision quality uplift: accepted recommendations after correction minus accepted recommendations before correction.
-4. Risk containment: high-risk recommendations downgraded or blocked by Risk Agent as percent of total risky candidates.
-
-**Must-have scope**
-- Full five-agent orchestration.
-- WHY + RISK + ACTION output format.
-- One self-correction cycle visible in demo.
-- Human approval gate.
-- Full audit log by agent and timestamp.
-- Quantified impact model with assumptions.
-
-**Nice-to-have scope**
-- Voice input.
-- Auto short-video market summary.
-- Regional language output.
+**Must-have vs Nice-to-have**
+- Must-have: multi-agent orchestration, stall detection, autonomous recovery, approval gate, audit trail, impact math.
+- Nice-to-have: calendar/email integration adapters, LLM-based owner disambiguation, analytics UI polish.
 
 **Relevant files**
-- README.md — update to include architecture, run steps, replay scenarios, impact formulas, and 3-minute demo flow.
+- README.md — should be rewritten to reflect Problem 2 solution narrative and demo flow.
+- plan.md — optional user-facing project plan mirror if you want repo-visible planning.
 
 **Verification**
-1. Run three replay scenarios and confirm all five agents emit outputs.
-2. Trigger one low-confidence reasoning output and verify corrected final output.
-3. Validate approval gate blocks unapproved action recommendations.
-4. Recompute impact numbers from logs and cross-check assumptions.
-5. Ensure video, architecture document, and repository narrative align exactly with judged criteria.
+1. Run 3 replay scenarios and confirm end-to-end completion with correct state transitions.
+2. Force a task delay and verify Recovery Agent retries then escalates per policy.
+3. Confirm audit log captures agent, rationale, confidence, and outcome for all major transitions.
+4. Validate KPI calculations from scenario outputs and ensure assumptions are explicit.
+5. Rehearse 3-minute demo twice under time with one failure-recovery sequence included.
 
 **Decisions**
-- Track: Problem 6 (AI for the Indian Investor).
-- Product: AlphaSense AI - Investor Copilot.
-- Core differentiator: WHY + RISK + ACTION with self-improving agent loop.
-- Scope focus: intelligence depth and measurable impact over UI breadth.
+- Selected problem: Problem 2 (Agentic AI for Autonomous Enterprise Workflows).
+- Chosen workflow: Meeting-to-Execution.
+- Build constraints: No external APIs; deterministic replay mode.
+- Stack: Python backend + minimal web UI.
 
 **Further Considerations**
-1. Keep recommendations advisory only, not auto-trading, to reduce policy risk.
-2. Use an offline replay dataset for deterministic final demo reliability.
-3. If schedule slips, merge Pattern and Reasoning into one agent but preserve Risk and Memory loop.
+1. Keep deterministic replay as primary demo path; external integrations can be shown as adapters only.
+2. Use synthetic but realistic meeting data with varied ownership and SLA windows.
+3. If timeline slips, merge Intake + Decision into one agent, but keep Recovery + Audit separate for judging impact.
